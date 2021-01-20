@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MvcCore.Helpers;
+using MvcCore.Repositories;
 
 namespace MvcCore
 {
@@ -16,6 +18,10 @@ namespace MvcCore
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<PathProvider>();
+            services.AddTransient<RepositoryJoyerias>();
+            services.AddTransient<RepositoryAlumnos>();
+            services.AddTransient<RepositoryDepartamentos>();
             services.AddControllersWithViews();
         }
 
