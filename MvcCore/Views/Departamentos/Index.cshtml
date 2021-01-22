@@ -25,23 +25,24 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Numero)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Localidad)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", "Departamentos", new { deptno = item.Numero }) |
-                @Html.ActionLink("Details", "Details", "Departamentos", new { deptno = item.Numero }) |
-                @Html.ActionLink("Delete", "Delete", "Departamentos", new { deptno = item.Numero }) 
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Numero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Localidad)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Departamentos", new { deptno = item.Numero }) |
+                    @Html.ActionLink("Details", "Details", "Departamentos", new { deptno = item.Numero }) |
+                    @Html.ActionLink("Delete", "Delete", "Departamentos", new { deptno = item.Numero })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
