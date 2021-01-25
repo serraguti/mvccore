@@ -7,25 +7,18 @@ using System.Threading.Tasks;
 
 namespace MvcCore.Repositories
 {
-    public class RepositoryDepartamentosSQL: IRepositoryDepartamentos
+    public class RepositoryDepartamentosMySql : IRepositoryDepartamentos
     {
         HospitalContext context;
-
-        public RepositoryDepartamentosSQL(HospitalContext context)
+        public RepositoryDepartamentosMySql(HospitalContext context)
         {
             this.context = context;
         }
 
-        public List<Departamento> GetDepartamentos()
-        {
-            var consulta = from datos in context.Departamentos
-                           select datos;
-            return consulta.ToList();
-        }
-
         public Departamento BuscarDepartamento(int deptno)
         {
-            return this.context.Departamentos.Where(z => z.Numero == deptno).FirstOrDefault();
+            return this.context.Departamentos
+                .Where(x => x.Numero == deptno).FirstOrDefault();
         }
 
         public void EliminarDepartamento(int deptno)
@@ -33,6 +26,11 @@ namespace MvcCore.Repositories
             Departamento departamento = this.BuscarDepartamento(deptno);
             this.context.Departamentos.Remove(departamento);
             this.context.SaveChanges();
+        }
+
+        public List<Departamento> GetDepartamentos()
+        {
+            return this.context.Departamentos.ToList();
         }
 
         public void InsertDepartamento(int deptno, string nombre, string localidad)

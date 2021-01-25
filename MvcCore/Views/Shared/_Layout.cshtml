@@ -13,6 +13,7 @@
 
     <!-- Custom styles for this template -->
     <link href="~/css/jumbotron.css" rel="stylesheet" />
+    @RenderSection("styles", false)
 </head>
 <body>
 
@@ -44,7 +45,7 @@
                            asp-action="Index">Alumnos XML Crud</a>
                         <a class="dropdown-item"
                            asp-controller="Departamentos"
-                           asp-action="Index">Departamentos XML Crud</a>
+                           asp-action="Index">Departamentos Crud</a>
                     </div>
                 </li>
             </ul>

@@ -10,9 +10,9 @@ namespace MvcCore.Controllers
 {
     public class DepartamentosController : Controller
     {
-        IRepositoryDepartamentos repo;
+        IRepositoryHospital repo;
 
-        public DepartamentosController(IRepositoryDepartamentos repo)
+        public DepartamentosController(IRepositoryHospital repo)
         {
             this.repo = repo;
         }
@@ -58,6 +58,24 @@ namespace MvcCore.Controllers
         {
             this.repo.InsertDepartamento(dept.Numero, dept.Nombre, dept.Localidad);
             return RedirectToAction("Index");
+        }
+
+        public IActionResult SeleccionMultiple()
+        {
+            List<Departamento> departamentos = this.repo.GetDepartamentos();
+            List<Empleado> empleados = this.repo.GetEmpleados();
+            ViewData["DEPARTAMENTOS"] = departamentos;
+            return View(empleados);
+        }
+
+        [HttpPost]
+        public IActionResult SeleccionMultiple(List<int> iddepartamentos)
+        {
+            List<Departamento> departamentos = this.repo.GetDepartamentos();
+            List<Empleado> empleados =
+                this.repo.BuscarEmpleadosDepartamentos(iddepartamentos);
+            ViewData["DEPARTAMENTOS"] = departamentos;
+            return View(empleados);
         }
     }
 }

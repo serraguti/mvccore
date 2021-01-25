@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MvcCore.Models.Departamento>
+﻿@model IEnumerable<Departamento>
 
 @{
     ViewData["Title"] = "Index";
@@ -8,6 +8,10 @@
 
 <p>
     <a asp-action="Create">Create New</a>
+    <a asp-action="SeleccionMultiple"
+       asp-controller="Departamentos">
+        Múltiples Empleados
+    </a>
 </p>
 <table class="table">
     <thead>
