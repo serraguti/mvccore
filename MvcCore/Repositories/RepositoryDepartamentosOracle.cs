@@ -90,5 +90,10 @@ namespace MvcCore.Repositories
             this.addept.Update(this.tabladept);
             this.tabladept.AcceptChanges();
         }
+
+        public void InsertDepartamento(int deptno, string nombre, string localidad, string imagen)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

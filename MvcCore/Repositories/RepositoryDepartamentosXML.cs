@@ -78,5 +78,10 @@ namespace MvcCore.Repositories
             this.docxml.Element("DEPARTAMENTOS").Add(xelem);
             this.docxml.Save(this.path);
         }
+
+        public void InsertDepartamento(int deptno, string nombre, string localidad, string imagen)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

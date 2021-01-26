@@ -53,6 +53,18 @@ namespace MvcCore.Repositories
             departamento.Localidad = localidad;
             this.context.SaveChanges();
         }
+
+        public void InsertDepartamento(int deptno, string nombre
+            , string localidad, string imagen)
+        {
+            Departamento dept = new Departamento();
+            dept.Numero = deptno;
+            dept.Nombre = nombre;
+            dept.Localidad = localidad;
+            dept.Imagen = imagen;
+            this.context.Departamentos.Add(dept);
+            this.context.SaveChanges();
+        }
         #endregion
 
         #region TABLA EMPLEADOS
@@ -69,7 +81,6 @@ namespace MvcCore.Repositories
                            select datos;
             return consulta.ToList();
         }
-
 
         #endregion
 

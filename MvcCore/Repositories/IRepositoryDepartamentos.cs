@@ -17,5 +17,8 @@ namespace MvcCore.Repositories
         void UpdateDepartamento(int deptno, String nombre, String localidad);
 
         void InsertDepartamento(int deptno, String nombre, String localidad);
+
+        void InsertDepartamento(int deptno, String nombre, String localidad
+            , String imagen);
     }
 }

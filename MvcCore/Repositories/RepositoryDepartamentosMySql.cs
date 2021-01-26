@@ -43,6 +43,11 @@ namespace MvcCore.Repositories
             this.context.SaveChanges();
         }
 
+        public void InsertDepartamento(int deptno, string nombre, string localidad, string imagen)
+        {
+            throw new NotImplementedException();
+        }
+
         public void UpdateDepartamento(int deptno, string nombre, string localidad)
         {
             Departamento departamento = this.BuscarDepartamento(deptno);

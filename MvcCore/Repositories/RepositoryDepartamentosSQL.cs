@@ -52,5 +52,10 @@ namespace MvcCore.Repositories
             departamento.Localidad = localidad;
             this.context.SaveChanges();
         }
+
+        public void InsertDepartamento(int deptno, string nombre, string localidad, string imagen)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

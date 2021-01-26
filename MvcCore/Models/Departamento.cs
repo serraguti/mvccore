@@ -18,5 +18,7 @@ namespace MvcCore.Models
         public String Nombre { get; set; }
         [Column("LOC")]
         public String Localidad { get; set; }
+        [Column("IMAGEN")]
+        public String Imagen { get; set; }
     }
 }
