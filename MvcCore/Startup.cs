@@ -33,7 +33,11 @@ namespace MvcCore
                 this.Configuration.GetConnectionString("cadenaoracle");
             String cadenamysql =
                 this.Configuration.GetConnectionString("cadenamysql");
-            services.AddTransient<PathProvider>();
+            services.AddSingleton<IConfiguration>(this.Configuration);
+            services.AddSingleton<MailService>();
+            services.AddSingleton<UploadService>();
+            services.AddSingleton<PathProvider>();
+
             services.AddTransient<RepositoryJoyerias>();
             services.AddTransient<RepositoryAlumnos>();
             services.AddTransient<IRepositoryDepartamentos

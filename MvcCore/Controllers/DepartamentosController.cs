@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using LibFileNameSanitizer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MvcCore.Helpers;
@@ -23,6 +24,7 @@ namespace MvcCore.Controllers
             this.pathprovider = pathprovider;
         }
 
+        
         public IActionResult Index()
         {
             List<Departamento> departamentos = this.repo.GetDepartamentos();

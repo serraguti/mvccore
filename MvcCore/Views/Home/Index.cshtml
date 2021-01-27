@@ -1,6 +1,20 @@
 ﻿<h1>Home</h1>
 
-<a asp-action="SubirFichero"
-   asp-controller="Home">
-    Subir fichero
-</a>
+<ul class="list-group">
+    <li class="list-group-item">
+        <a asp-action="SubirFichero"
+           asp-controller="Home">
+            Subir fichero
+        </a>
+    </li>
+    <li class="list-group-item">
+        <a asp-controller="Home" asp-action="EjemploMail">
+            Ejemplo Mail
+        </a>
+    </li>
+    <li class="list-group-item">
+        <a asp-controller="Home" asp-action="CifradoHash">
+            Cifrado Hash
+        </a>
+    </li>
+</ul>

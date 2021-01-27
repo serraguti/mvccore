@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace MvcCore.Helpers
 {
     public enum Folders { 
-        Images = 0, Documents = 1
+        Images = 0, Documents = 1, Temporal = 2
     }
 
     public class PathProvider
@@ -30,6 +30,9 @@ namespace MvcCore.Helpers
             }else if (folder == Folders.Images)
             {
                 carpeta = "images";
+            }else if (folder == Folders.Temporal)
+            {
+                carpeta = "temporal";
             }
             String path = Path.Combine(this.environment.WebRootPath
                 , carpeta, filename);
