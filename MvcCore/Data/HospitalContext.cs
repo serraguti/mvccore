@@ -14,5 +14,7 @@ namespace MvcCore.Data
 
         public DbSet<Departamento> Departamentos { get; set; }
         public DbSet<Empleado> Empleados { get; set; }
+
+        public DbSet<Usuario> Usuarios { get; set; }
     }
 }

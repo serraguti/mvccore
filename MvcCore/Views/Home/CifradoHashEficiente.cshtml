@@ -1,0 +1,20 @@
+﻿<h1>Cifrado Hash Eficiente</h1>
+
+@Html.Raw(ViewData["MENSAJE"])
+
+<form method="post">
+    <label>Iteraciones: </label>
+    <input type="text" name="iteraciones"
+           class="form-control"/><br/>
+    <label>Salt: </label>
+    <input type="text" name="salt" class="form-control"/><br/>
+    <label>Contenido: </label>
+    <input type="text" name="contenido" class="form-control"/><br/>
+    <label>Resultado: </label>
+    <input name="resultado" class="form-control" value="@ViewData["RESULTADO"]"/><br/>
+    <button type="submit" class="btn btn-danger" name="accion"
+             value="cifrar">Cifrar</button>
+    <button type="submit" name="accion" value="comparar"
+            class="btn btn-info">Comparar</button>
+</form>
+<p>@ViewData["RESULTADO"]</p>

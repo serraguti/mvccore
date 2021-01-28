@@ -16,7 +16,6 @@ namespace MvcCore.Controllers
 {
     public class HomeController : Controller
     {
-        PathProvider PathProvider;
         MailService MailService;
         UploadService UploadService;
 
@@ -80,24 +79,7 @@ namespace MvcCore.Controllers
         public IActionResult CifradoHash
             (String contenido, String resultado, String accion)
         {
-            //NECESITAMOS TRABAJAR A NIVEL DE byte[]
-            //DEBEMOS CONVERTIR A byte[] EL CONTENIDO DE ENTRADA
-            byte[] entrada;
-            //EL CIFRADO SE REALIZA A NIVEL DE byte[] Y DEVOLVERA
-            //OTRO byte[] DE SALIDA
-            byte[] salida;
-            //NECESITAMOS UN CONVERSOR PARA TRANSFORMAR byte[]
-            //A String Y VICEVERSA
-            UnicodeEncoding encoding = new UnicodeEncoding();
-            //NECESITAMOS EL OBJETO QUE SE ENCARGARA DE REALIZAR
-            //EL CIFRADO
-            SHA1Managed sha = new SHA1Managed();
-            //DEBEMOS CONVERTIR EL CONTENIDO DE ENTRADA A byte[]
-            entrada = encoding.GetBytes(contenido);
-            //EL OBJETO Sha1Managed TIENE UN METODO
-            //PARA DEVOLVER LOS byte[] DE SALIDA REALIZANDO EL CIFRADO
-            salida = sha.ComputeHash(entrada);
-            String res = encoding.GetString(salida);
+            String res = CypherService.EncriptarTextoBasico(contenido);
             //SOLAMENTE SI ESCRIBIMOS EL MISMO CONTENIDO
             //TENDRIAMOS LA MISMA SECUENCIA DE SALIDA
             if (accion.ToLower() == "cifrar")
@@ -123,6 +105,36 @@ namespace MvcCore.Controllers
             }
             
 
+            return View();
+        }
+
+        public IActionResult CifradoHashEficiente()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CifradoHashEficiente(String contenido
+            , int iteraciones, String salt, String resultado, String accion)
+        {
+            String cifrado =
+                CypherService.CifrarContenido(contenido, iteraciones, salt);
+            if (accion.ToLower() == "cifrar")
+            {
+                ViewData["RESULTADO"] = cifrado;
+            }else if (accion.ToLower() == "comparar")
+            {
+                if (resultado == cifrado)
+                {
+                    ViewData["MENSAJE"] =
+                        "<h1 style='color:blue'>Son Iguales!!!</h1>";
+                }
+                else
+                {
+                    ViewData["MENSAJE"] =
+                        "<h1 style='color:red'>Resultado Incorrecto</h1>";
+                }
+            }
             return View();
         }
     }

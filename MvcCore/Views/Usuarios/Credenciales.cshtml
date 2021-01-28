@@ -1,0 +1,19 @@
+﻿<h1>Credenciales Usuario</h1>
+
+<a asp-controller="Usuarios"
+   asp-action="Index">
+    Volver a Index
+</a>
+
+<form method="post">
+    <label>Usuario: </label>
+    <input type="text" name="username"
+           class="form-control"/><br/>
+    <label>Password: </label>
+    <input type="text" name="password"
+           class="form-control"/><br/>
+    <button type="submit" class="btn btn-danger">
+        Log In
+    </button>
+</form>
+<h1>@ViewData["MENSAJE"]</h1>
