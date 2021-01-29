@@ -51,7 +51,7 @@ namespace MvcCore.Repositories
                     CypherService.CifrarContenido(password, salt);
                 //COMPARAR ARRAY BYTES[]
                 bool respuesta =
-                    HelperToolkit.CompararArrayBytes(passbbdd, passtemporal);
+                    ToolkitService.CompararArrayBytes(passbbdd, passtemporal);
                 if (respuesta == true)
                 {
                     return user;

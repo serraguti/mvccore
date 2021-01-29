@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MvcCore.Helpers
 {
-    public class HelperToolkit
+    public class ToolkitService
     {
         public static bool CompararArrayBytes(byte[] a, byte[] b)
         {
