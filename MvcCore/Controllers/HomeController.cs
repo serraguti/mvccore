@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using MvcCore.Extensions;
 using MvcCore.Helpers;
 using MvcCore.Models;
 
@@ -49,7 +50,7 @@ namespace MvcCore.Controllers
                 //    ToolkitService.ByteArrayToObject(data) as Persona;
                 String data = HttpContext.Session.GetString("persona");
                 Persona person =
-ToolkitService.DeserializeJsonObject(data, typeof(Persona)) as Persona;
+                    ToolkitService.DeserializeJsonObject<Persona>(data);
                 ViewData["autor"] = 
                     person.Nombre + ", Edad: " + person.Edad;
                 ViewData["hora"] = person.Hora;
@@ -80,9 +81,11 @@ ToolkitService.DeserializeJsonObject(data, typeof(Persona)) as Persona;
                 //byte[] data =
                 //    ToolkitService.ObjectToByteArray(personas);
                 //HttpContext.Session.Set("personas", data);
-                String data =
-                    ToolkitService.SerializeJsonObject(personas);
-                HttpContext.Session.SetString("personas", data);
+                //String data =
+                //    ToolkitService.SerializeJsonObject(personas);
+                //HttpContext.Session.SetString("personas", data);
+                HttpContext.Session.SetObject("personas", personas);
+
                 ViewData["MENSAJE"] = "Almacenando "
                     + DateTime.Now.ToLongTimeString();
             }
@@ -92,11 +95,13 @@ ToolkitService.DeserializeJsonObject(data, typeof(Persona)) as Persona;
                 //    HttpContext.Session.Get("personas");
                 //List<Persona> personas =
                 //    ToolkitService.ByteArrayToObject(data) as List<Persona>;
-                String data =
-                    HttpContext.Session.GetString("personas");
+                //String data =
+                //    HttpContext.Session.GetString("personas");
+                //List<Persona> personas =
+                //    ToolkitService.DeserializeJsonObject<List<Persona>>(data);
                 List<Persona> personas =
-                    ToolkitService.DeserializeJsonObject(data
-                    , typeof(List<Persona>)) as List<Persona>;
+                    HttpContext.Session.GetObject<List<Persona>>("personas");
+
                 ViewData["MENSAJE"] = "Recuperando de Session";
                 return View(personas);
             }

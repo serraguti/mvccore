@@ -66,12 +66,9 @@ namespace MvcCore.Helpers
 
         //METODO QUE RECIBIRA UN String Json Y DEVOLVERA EL OBJETO
         //QUE REPRESENTA DICHO JSON
-        public static Object DeserializeJsonObject(String json
-            , Type type)
+        public static T DeserializeJsonObject<T>(String json)
         {
-            Object respuesta =
-                JsonConvert.DeserializeObject(json, type);
-            return respuesta;
+            return JsonConvert.DeserializeObject<T>(json);
         }
     }
 }
