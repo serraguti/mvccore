@@ -27,6 +27,12 @@ namespace MvcCore
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(15);
+            });
+
             String cadenasql =
                 this.Configuration.GetConnectionString("cadenasqlhospitalcasa");
             String cadenaoracle =
@@ -70,6 +76,7 @@ namespace MvcCore
             app.UseRouting();
 
             app.UseStaticFiles();
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

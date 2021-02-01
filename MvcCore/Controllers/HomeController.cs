@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using MvcCore.Helpers;
+using MvcCore.Models;
 
 namespace MvcCore.Controllers
 {
@@ -24,6 +25,82 @@ namespace MvcCore.Controllers
         {
             this.MailService = mailservice;
             this.UploadService = uploadservice;
+        }
+
+        public IActionResult EjemploSession(String accion)
+        {
+            if (accion == "almacenar")
+            {
+                Persona person = new Persona();
+                person.Nombre = "Alumno";
+                person.Edad = 27;
+                person.Hora = DateTime.Now.ToLongTimeString();
+                //byte[] data = ToolkitService.ObjectToByteArray(person);
+                //HttpContext.Session.Set("persona", data);
+                String data =
+                    ToolkitService.SerializeJsonObject(person);
+                HttpContext.Session.SetString("persona", data);
+                ViewData["MENSAJE"] = "Datos almacenados en Session "
+                    + DateTime.Now.ToLongTimeString();
+            }else if (accion == "mostrar")
+            {
+                //byte[] data = HttpContext.Session.Get("persona");
+                //Persona person =
+                //    ToolkitService.ByteArrayToObject(data) as Persona;
+                String data = HttpContext.Session.GetString("persona");
+                Persona person =
+ToolkitService.DeserializeJsonObject(data, typeof(Persona)) as Persona;
+                ViewData["autor"] = 
+                    person.Nombre + ", Edad: " + person.Edad;
+                ViewData["hora"] = person.Hora;
+                ViewData["MENSAJE"] = "Mostrando datos";
+            }
+            return View();
+        }
+
+        public IActionResult AlmacenarMultipleSession(String accion)
+        {
+            if (accion == "almacenar")
+            {
+                List<Persona> personas = new List<Persona>();
+                Persona p = new Persona
+                {
+                    Nombre = "Lucia",
+                    Edad = 16,
+                    Hora = DateTime.Now.ToLongTimeString()
+                };
+                personas.Add(p);
+                p = new Persona
+                {
+                    Nombre = "Antonia",
+                    Edad = 36,
+                    Hora = DateTime.Now.ToLongTimeString()
+                };
+                personas.Add(p);
+                //byte[] data =
+                //    ToolkitService.ObjectToByteArray(personas);
+                //HttpContext.Session.Set("personas", data);
+                String data =
+                    ToolkitService.SerializeJsonObject(personas);
+                HttpContext.Session.SetString("personas", data);
+                ViewData["MENSAJE"] = "Almacenando "
+                    + DateTime.Now.ToLongTimeString();
+            }
+            else if (accion == "mostrar")
+            {
+                //byte[] data =
+                //    HttpContext.Session.Get("personas");
+                //List<Persona> personas =
+                //    ToolkitService.ByteArrayToObject(data) as List<Persona>;
+                String data =
+                    HttpContext.Session.GetString("personas");
+                List<Persona> personas =
+                    ToolkitService.DeserializeJsonObject(data
+                    , typeof(List<Persona>)) as List<Persona>;
+                ViewData["MENSAJE"] = "Recuperando de Session";
+                return View(personas);
+            }
+            return View();
         }
 
         public IActionResult EjemploMail()
