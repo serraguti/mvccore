@@ -27,6 +27,10 @@ namespace MvcCore
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddResponseCaching();
+
+
+            services.AddMemoryCache();
             services.AddDistributedMemoryCache();
             services.AddSession(options =>
             {
@@ -76,6 +80,8 @@ namespace MvcCore
             app.UseRouting();
 
             app.UseStaticFiles();
+            app.UseResponseCaching();
+
             app.UseSession();
             app.UseEndpoints(endpoints =>
             {
