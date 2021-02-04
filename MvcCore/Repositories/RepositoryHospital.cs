@@ -100,6 +100,14 @@ namespace MvcCore.Repositories
             return consulta.ToList();
         }
 
+        public List<Empleado> GetEmpleadosSession(List<int> idempleados)
+        {
+            var consulta = from datos in this.context.Empleados
+                           where idempleados.Contains(datos.IdEmpleado)
+                           select datos;
+            return consulta.ToList();
+        }
+
         #endregion
 
     }

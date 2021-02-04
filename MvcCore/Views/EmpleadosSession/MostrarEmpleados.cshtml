@@ -1,0 +1,37 @@
+﻿@model List<Empleado>
+
+@{
+    ViewData["Title"] = "MostrarEmpleados";
+}
+
+<h1 style="color:blue">Mostrar Empleados Session</h1>
+
+<a asp-controller="EmpleadosSession"
+   asp-action="AlmacenarEmpleados">
+    Volver Almacenar Empleados
+</a>
+@if (Model == null)
+{
+    <h2 style="color:red">
+        No existen empleados en Session
+    </h2>
+}
+else
+{
+    <ul class="list-group">
+        @foreach (Empleado emp in Model)
+        {
+            <li class="list-group-item">
+                @emp.Apellido
+                <a class="btn btn-danger"
+                   asp-action="MostrarEmpleados"
+                   asp-controller="EmpleadosSession"
+                   asp-route-eliminar="@emp.IdEmpleado">
+                    Eliminar de Session
+                </a>
+            </li>
+        }
+    </ul>
+}
+
+
