@@ -71,5 +71,41 @@ namespace MvcCore.Controllers
                 return View(empleados);
             }
         }
+
+        [HttpPost]
+        public IActionResult MostrarEmpleados(List<int> cantidades)
+        {
+            //NECESITAMOS SABER SI VIENEN A LA PAR
+            //SANCHA 7369 DEBE ESTAR EN POSICION 0, 5
+            //ARROYO 7499 DEBE ESTAR EN POSICION 1, 1
+            List<int> sessionemp =
+                HttpContext.Session.GetObject<List<int>>("EMPLEADOS");
+            List<Empleado> empleados =
+                this.repo.GetEmpleadosSession(sessionemp);
+            TempData["EMPLEADOS"] = empleados;
+            TempData["CANTIDADES"] = cantidades;
+            return RedirectToAction("Pedidos");
+        }
+
+        public IActionResult Pedidos()
+        {
+            //return View();
+            ViewData["CANTIDADES"] = TempData["CANTIDADES"];
+            return View((List<Empleado>)TempData["EMPLEADOS"]);
+        }
+
+        //[HttpPost]
+        //public IActionResult Pedidos(List<int> cantidades)
+        //{
+        //    //NECESITAMOS SABER SI VIENEN A LA PAR
+        //    //SANCHA 7369 DEBE ESTAR EN POSICION 0, 5
+        //    //ARROYO 7499 DEBE ESTAR EN POSICION 1, 1
+        //    ViewData["CANTIDADES"] = cantidades;
+        //    List<int> sessionemp =
+        //        HttpContext.Session.GetObject<List<int>>("EMPLEADOS");
+        //    List<Empleado> empleados =
+        //        this.repo.GetEmpleadosSession(sessionemp);
+        //    return View(empleados);
+        //}
     }
 }

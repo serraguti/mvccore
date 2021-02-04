@@ -18,6 +18,10 @@
 }
 else
 {
+<form method="post">
+    <button type="submit" class="btn btn-info">
+        Realizar pedido
+    </button>
     <ul class="list-group">
         @foreach (Empleado emp in Model)
         {
@@ -29,9 +33,13 @@ else
                    asp-route-eliminar="@emp.IdEmpleado">
                     Eliminar de Session
                 </a>
+                <input type="number" value="1"
+                       class="form-control"
+                       name="cantidades"/>
             </li>
         }
     </ul>
+</form>
 }
 
 
