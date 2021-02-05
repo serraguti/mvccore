@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -66,6 +67,7 @@ namespace MvcCore
             //mySqlOptions.CharSetBehavior(CharSetBehavior.NeverAppend)));
             //services.AddDbContextPool<HospitalContext>
             //    (options => options.UseMySql(cadenamysql, ServerVersion.AutoDetect(cadenamysql)));
+
             services.AddControllersWithViews();
         }
 
